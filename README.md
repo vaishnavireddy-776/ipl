@@ -24,9 +24,10 @@ docker rm nagiosdemo
 docker rmijasonrivers/nagios:latest
 
 Pileline script
+
 pipeline {
     agent any
-
+    
     tools {
         maven 'MAVEN_HOME'
     }
@@ -66,3 +67,14 @@ Login github:
 git config --global user.name "Vaishnavi Reddy"
 git config --global user.email "YOUR_GITHUB_EMAIL@gmail.com"
 
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcat-users xmlns="http://tomcat.apache.org/xml"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
+              version="1.0">
+
+  <role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <user username="admin" password="admin" roles="manager-gui,manager-script"/>
+
+</tomcat-users>

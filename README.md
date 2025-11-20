@@ -23,3 +23,46 @@ docker rm nagiosdemo
 6.Remove the image
 docker rmijasonrivers/nagios:latest
 
+Pileline script
+pipeline {
+    agent any
+
+    tools {
+        maven 'MAVEN_HOME'
+    }
+
+    stages {
+
+        stage('Git Repo & Clean') {
+            steps {
+                bat "git clone https://github.com/vaishnavireddy-776/jenkins_web.git"
+
+                // go into folder after cloning
+                bat "cd jenkins_web && mvn clean"
+            }
+        }
+
+        stage('Install') {
+            steps {
+                bat "cd jenkins_web && mvn install"
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat "cd jenkins_web && mvn test"
+            }
+        }
+
+        stage('Package') {
+            steps {
+                bat 'cd jenkins_web && mvn package'
+            }
+        }
+    }
+}
+
+Login github:
+git config --global user.name "Vaishnavi Reddy"
+git config --global user.email "YOUR_GITHUB_EMAIL@gmail.com"
+
